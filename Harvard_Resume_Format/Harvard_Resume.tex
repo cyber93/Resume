@@ -1,0 +1,233 @@
+\documentclass[a4paper]{article}
+    \usepackage{hyperref}
+    \usepackage{fullpage}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{textcomp}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \textheight=5in
+    \pagestyle{empty}
+    \raggedright
+    \usepackage[left=0.4in,right=0.4in,bottom=0.3in,top=0.5in]{geometry}
+\usepackage{etoolbox,refcount}
+\usepackage{multicol}
+
+
+\newcounter{countitems}
+\newcounter{nextitemizecount}
+\newcommand{\setupcountitems}{%
+  \stepcounter{nextitemizecount}%
+  \setcounter{countitems}{0}%
+  \preto\item{\stepcounter{countitems}}%
+}
+\makeatletter
+\newcommand{\computecountitems}{%
+  \edef\@currentlabel{\number\c@countitems}%
+  \label{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+\newcommand{\nextitemizecount}{%
+  \getrefnumber{countitems@\number\c@nextitemizecount}%
+}
+\newcommand{\previtemizecount}{%
+  \getrefnumber{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+\makeatother    
+\newenvironment{AutoMultiColItemize}{%
+\ifnumcomp{\nextitemizecount}{>}{3}{\begin{multicols}{2}}{}%
+\setupcountitems\begin{itemize}}%
+{\end{itemize}%
+\unskip\computecountitems\ifnumcomp{\previtemizecount}{>}{3}{\end{multicols}}{}}
+
+
+    %\renewcommand{\encodingdefault}{cg}
+%\renewcommand{\rmdefault}{lgrcmr}
+
+\def\bull{\vrule height 0.7ex width .7ex depth -.1ex }
+
+% DEFINITIONS FOR RESUME %%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=black,
+    pdftitle={Han Deok Lee's Resume},
+    pdfpagemode=FullScreen,
+    }
+
+\newcommand{\area} [2] {
+    \vspace*{-9pt}
+    \begin{verse}
+        \textbf{#1}   #2 
+    \end{verse}
+}
+
+\newcommand{\lineunder} {
+    \vspace*{-8pt} \\
+    \hspace*{-18pt} \hrulefill \\
+}
+
+\newcommand{\header} [1] {
+    {\hspace*{-18pt}\vspace*{6pt} \textsc{#1}}
+    \vspace*{-6pt} \lineunder
+}
+
+\newcommand{\employer} [3] {
+    { \textbf{#1} (#2)\\ \underline{\textbf{\emph{#3}}}\\  }
+}
+
+\newcommand{\contact} [3] {
+    \vspace*{-10pt}
+    \begin{center}
+        {\Huge \scshape {#1}}\\
+        #2 \\ #3
+    \end{center}
+    \vspace*{-8pt}
+}
+
+\newenvironment{achievements}{
+    \begin{list}
+        {$\bullet$}{\topsep 0pt \itemsep -2pt}}{\vspace*{4pt}
+    \end{list}
+}
+
+\newcommand{\schoolwithcourses} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+    \vspace*{5pt}
+}
+
+\newcommand{\school} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+}
+% END RESUME DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%
+
+    \begin{document}
+\vspace*{-40pt}
+
+    
+
+%==== Profile ====%
+\vspace*{-9pt}
+\begin{center}
+	{\Huge \scshape {Han Deok Lee}}\\
+	\vspace{1mm}
+	India $\cdot$ \underline{cyber93@gmail.com} $\cdot$ +82 10-5542-1453 $\cdot$ \href{https://github.com/cyber93}{\underline{Github}} $\cdot$ \href{https://www.linkedin.com/in/han-deok-lee-696437349/}{\underline{Linkedin}} \\
+\end{center}
+%==== Education ====%
+\vspace{-2mm}
+\header{Education}
+\vspace{0.5mm}
+\textbf{Thapar Institute of Engineering and Technology}\hfill Patiala\\
+BTech Computer  Engineering \hfill September 2021 - Present\\
+\vspace{0.5mm}
+\textbf{Indian Institute of Technology}\hfill Madras\\
+Bs Data Science and Applications \hfill January 2022 - Present\\
+\vspace{-0.5mm}
+\header{Publications}
+\vspace{-0.5mm}
+\textbf{Regulating I/O Performance of Shared Storage with a Control Theoretical Approach}
+    {\textit{Han Deok Lee, Young Jin Nam, Kyong Jo Jung, Seok Gan Jung, Chanik Park}}\\
+\vspace{0.5 mm}
+Pre-Print Link:https: \url{https://doi.org/10.36227/techrxiv.24448963.v1} \\
+Under Review IEEE Sensors Journal\\
+12th NASA Goddard / 21st IEEE (MSST2004) Conference on Mass Storage Systems and Technologies \\
+% \vspace{0.5 mm}
+% \textbf{AIM-CVT: Design of a Framework for the AI-Enabled-Multilingual Court Verdict Translator}
+%     {\textit{Eishkaran Singh, Sachin Kansal, Arshjot Singh}}\\
+% \vspace{0.5 mm}
+% Submission Id:- EVOS-D-23-00559\\
+% Under Review Evolving Systems Journal\\
+\vspace{-0.5 mm}
+\header{Experience}
+\vspace{-1mm}
+{\textbf{Columbia University}}\hfill November 2023 - Present \\
+ {\textit{Research Intern under Prof. (Dr.)Eugene Wu }}  \
+\vspace{-2mm}
+\begin{itemize} 
+\item Pioneering the development of automation methodologies for Kaggle competitions through the strategic integration of Large Language Models, optimizing processes for heightened efficiency and competitive advantage.
+\end{itemize}
+\vspace{-1.5mm}
+{\textbf{Carneige Mellon University}}\hfill November 2023 - Present \\
+ {\textit{Research Intern under Prof. (Dr.)Min Xu at XuLabs}}  \
+\vspace{-2mm}
+\begin{itemize} 
+\item Currently engaged in cutting-edge research in biomedical image analysis, with a focus on the application of cryo-electron tomography (cryo-ET) and cryo-electron microscopy (cryo-EM) techniques for advanced image processing and analysis.
+\end{itemize}
+\vspace{-2mm}
+{\textbf{Indian Institute of Technology Indore}}\hfill July 2023 - Present \\
+ {\textit{Research Intern under Prof. (Dr.)Chandresh Kumar Maurya }}  \
+\vspace{-2mm}
+\begin{itemize} 
+\item Proficiently contributed to the alignment of diverse text-to-text and text-to-audio scripts across 14 distinct Indian languages, employing a range of advanced aligner tools.  
+\vspace{-2.5mm}
+\item Employed NLP and IndicNLP libraries for text preprocessing, constructing a gold standard dataset to drive the application of various ML/DL models.
+\end{itemize}
+\vspace{-1.5mm}
+{\textbf{Indian Institute of Technology Mandi}}\hfill June 2023 - Present \\
+ {\textit{Research Intern under Prof. (Dr.)Varun Dutt in Digital Nose Project}}  \
+\vspace{-2mm}
+\begin{itemize} 
+\item Orchestrated migration of local workflows to servers using automation and DevOps principles, optimizing operational efficiency and boosting machine learning model accuracy. 
+\vspace{-2mm}
+\item Utilized FastAPI to create asynchronous functions for process automation and applied machine learning algorithms, including classification and stack meta-modeling, to boost predictive accuracy.
+\end{itemize}
+\vspace{-2mm}
+{\textbf{Thapar Institute of Engineering and Technology}}\hfill May 2023 - Present \\
+ {\textit{Research Intern under Prof. (Dr.) Sachin Kansal }}  \
+\vspace{-2mm}
+\begin{itemize} 
+\item Developed an efficient pipeline for extracting frames from video data, utilising advanced image processing techniques, parallel processing, and error handling. 
+\vspace{-2mm}
+\item Optimised the pipeline's performance, enabling swift extraction of frames from large-scale video datasets while ensuring accuracy and data integrity.
+\vspace{-2mm}
+\item Leveraged Beautiful Soup and bs4 libraries to surpass Google Translate's 5000-character limit, enabling translation of unlimited text seamlessly.
+\end{itemize}
+\vspace{-2mm}
+{\textbf{Thapar Institute of Engineering and Technology}}\hfill June 2023-July 2023 \\
+ {\textit{Guest Lecturer}}  \
+\vspace{-2mm}
+\begin{itemize} 
+\item Invited as guest of  honour to deliver the lecture in Thapar summer School of Machine learning and deep Learning and delivered 6 lectures on Image Processing and natural language processing.
+\end{itemize}
+\vspace{-1.5mm}
+\header{Projects/Achievements}
+{\textbf{PixelMind AI}} \hfill May 2023 \\
+\vspace{-3mm}
+\begin{itemize} 
+	\item Paradox’23 in Indian Institute of Technology Madras organised a contest in thhe domain of Image enhancement for students and industry professionals where I won 2nd Position and won a cash Prize of Rs.50K.
+    \vspace{-2mm}
+    \item Utilized a combination of C language and Python, along with image processing funcitons, to significantly expedite image enhancement compared to competitors in a time-efficient manner.
+\end{itemize}
+\vspace{-2.5mm}
+{\textbf{Kaggle Master}} \hfill June 2023 \\
+\vspace{-1mm}
+\url{https://www.kaggle.com/eishkaran} \\
+\vspace{-1.5mm}
+\begin{itemize} 
+    \vspace{-1mm}
+    \item Participated in a global Kaggle competition on Binary Classification with Software Defects, competing against 1702 teams worldwide. Achieved an impressive world ranking of 44, placing in the top 3\% of participants. Employed advanced classifier models to optimize accuracy within the shortest time frame, demonstrating a strong commitment to efficiency and excellence in data analysis and predictive modeling
+\vspace{-2.5mm}
+\end{itemize}
+\vspace{-2mm}
+\header{Skills}
+\vspace{0.5mm}
+\begin{tabular}{ l l }
+	Programming Languages: & C, C++, Go, Rust, Python, Javascript  \\
+	Database Management Systems: & MySQL(MariaDB), MongoDB, Prometheus, Influx DB \\ 
+    Cloud Computing: & GCP, AWS\\
+	Web Development:       & HTML , CSS, JavaScript   \\
+    Tech Stack:       & Flask , FastAPI   \\
+	Libraries / Frameworks: & Pandas, Numpy, Seaborn, Tensorflow, Pytorch, XGBoost, scikit-learn, OpenCv, PIL       \\
+	Machine Learning:             & Regression, Classification, Clustering, Neural Networks, Deep Learning, LLM\\
+	Soft Skills:           &  Public Speaking, Leadership  \\
+	
+\end{tabular}
+
+
+% \vspace{0.5mm}
+% \header{MISCELLANEOUS}
+% {\textbf{Career Certificates }} \hfill Jan 2023\\  \\Python, MySQL, Pandas, Supervised Machine Learning, Advanced Algorithms\\ 
+% {\textbf{Silver Zone Olympiad }} \hfill September 2020\\  \\International Informatics Olympiad\\ 
+\end{document}
